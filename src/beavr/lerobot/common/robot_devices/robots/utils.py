@@ -17,6 +17,7 @@ from typing import Protocol
 from beavr.lerobot.common.robot_devices.robots.configs import (
     AlohaRobotConfig,
     BeavrBotConfig,
+    DobotCR5OnlyAdapterConfig,
     KochBimanualRobotConfig,
     KochRobotConfig,
     LeKiwiRobotConfig,
@@ -73,6 +74,8 @@ def make_robot_config(robot_type: str, **kwargs) -> RobotConfig:
         return LeKiwiRobotConfig(**kwargs)
     elif robot_type == "multi_robot_adapter":
         return BeavrBotConfig(**kwargs)
+    elif robot_type == "dobot_cr5_only_adapter":
+        return DobotCR5OnlyAdapterConfig(**kwargs)
     else:
         raise ValueError(f"Robot type '{robot_type}' is not available.")
 

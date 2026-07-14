@@ -814,3 +814,35 @@ class LeapOnlyAdapterConfig(BeavrBotConfig):
                 "teleop_port": ports.XARM_TELEOPERATION_STATE_PORT,
             }
         ]
+
+
+@RobotConfig.register_subclass("dobot_cr5_only_adapter")
+@dataclass
+class DobotCR5OnlyAdapterConfig(BeavrBotConfig):
+    """Dobot CR5 arm-only configuration for BeaVR/LeRobot recording."""
+
+    robot_type: str = "dobot_cr5_only"
+    cameras: dict[str, CameraConfig] = field(default_factory=dict)
+
+    def __post_init__(self):
+        self.robot_configs = [
+            {
+                "name": f"{robots.ROBOT_NAME_DOBOT_CR5}_right",
+                "host": network.HOST_ADDRESS,
+                "state_port": ports.DOBOT_CR5_STATE_PUBLISH_PORT,
+                "state_topic": f"{robots.ROBOT_NAME_DOBOT_CR5}_right",
+                "robot_type": "arm",
+                "observation_key": "arm_state",
+                "action_key": "arm_action",
+                "joint_count": 6,
+                "joint_state_path": ["joint_states", "joint_position"],
+                "command_state_path": [
+                    "commanded_cartesian_state",
+                    "commanded_cartesian_position",
+                ],
+                "endeff_publish_port": ports.DOBOT_CR5_ENDEFF_SUBSCRIBE_PORT,
+                "command_topic": "endeff_coords",
+                "home_subscribe_port": ports.DOBOT_CR5_HOME_SUBSCRIBE_PORT,
+                "teleop_port": ports.DOBOT_CR5_TELEOPERATION_STATE_PORT,
+            }
+        ]

@@ -8,6 +8,7 @@ import numpy as np
 
 ROBOT_NAME_LEAP = "leap"
 ROBOT_NAME_XARM7 = "xarm7"
+ROBOT_NAME_DOBOT_CR5 = "dobot_cr5"
 
 # -----------------------------------------------------------------------------
 # VR detector constants
@@ -149,6 +150,8 @@ VISUALIZE_RIGHT_DIR = False
 # -----------------------------------------------------------------------------
 ROBOT_IDENTIFIER_RIGHT_XARM7 = "right_xarm7"
 ROBOT_IDENTIFIER_LEFT_XARM7 = "left_xarm7"
+ROBOT_IDENTIFIER_RIGHT_DOBOT_CR5 = "right_dobot_cr5"
+ROBOT_IDENTIFIER_LEFT_DOBOT_CR5 = "left_dobot_cr5"
 ROBOT_IDENTIFIER_RIGHT_LEAP_HAND = "right_leap"
 ROBOT_IDENTIFIER_LEFT_LEAP_HAND = "left_leap"
 ROBOT_IDENTIFIER_LEAP = "leap"
@@ -159,6 +162,7 @@ ROBOT_IDENTIFIER_LEAP = "leap"
 RECORDED_DATA_JOINT_STATES = "joint_states"
 RECORDED_DATA_CARTESIAN_STATES = "cartesian_states"
 RECORDED_DATA_XARM_CARTESIAN_STATES = "xarm_cartesian_states"
+RECORDED_DATA_DOBOT_CARTESIAN_STATES = "dobot_cartesian_states"
 RECORDED_DATA_COMMANDED_CARTESIAN_STATE = "commanded_cartesian_state"
 RECORDED_DATA_COMMANDED_JOINT_STATES = "commanded_joint_states"
 RECORDED_DATA_JOINT_ANGLES_RAD = "joint_angles_rad"

@@ -373,7 +373,7 @@ class BeavrBot(Robot):
             missing_robots.append(name)
 
             if config["robot_type"] == "arm":
-                combined_state.extend(np.array(robots.ROBOT_HOME_JS, dtype=np.float32))
+                combined_state.extend(np.zeros(config["joint_count"], dtype=np.float32))
             elif config["robot_type"] == "hand":
                 combined_state.extend(np.array(robots.LEAP_HOME_JS, dtype=np.float32))
 
