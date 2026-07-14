@@ -9,6 +9,7 @@ PYTHON="${PYTHON:-python}"
 
 # Defaults match the right-arm jump host from ~/.ssh/config:
 # dobot-cr5a-right-computer -> CR5 controller at 192.168.5.2.
+export BEAVR_HOST_ADDRESS="${BEAVR_HOST_ADDRESS:-192.168.1.145}"
 export DOBOT_ROBOT_HOST="${DOBOT_ROBOT_HOST:-192.168.5.2}"
 export DOBOT_ROBOT_PORT="${DOBOT_ROBOT_PORT:-29999}"
 export DOBOT_DRY_RUN="${DOBOT_DRY_RUN:-1}"

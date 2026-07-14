@@ -2,9 +2,11 @@
 # Network Configuration Constants
 # -----------------------------------------------------------------------------
 
+import os
+
 # Host addresses
 # NOTE: Keep this in sync with your active environment config (e.g. configs/environment/dev.yaml)
-HOST_ADDRESS = "10.0.0.51"
+HOST_ADDRESS = os.environ.get("BEAVR_HOST_ADDRESS", "10.0.0.51")
 
 # Robot IP addresses
 LEFT_XARM_IP = "192.168.1.237"

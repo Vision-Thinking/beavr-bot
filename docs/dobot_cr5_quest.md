@@ -37,7 +37,7 @@ Quest headset  ->  right server: 192.168.1.145
 right server   ->  Dobot CR5 controller: 192.168.5.2:29999
 ```
 
-Quest App 里输入的是后端服务器 IP，也就是 `192.168.1.145`。不要输入 `192.168.5.2`，那是 right 服务器内侧网卡能访问的 CR5 控制器地址。
+Quest App 里输入的是后端服务器 IP，也就是 `BEAVR_HOST_ADDRESS=192.168.1.145`。不要输入 `192.168.5.2`，那是 right 服务器内侧网卡能访问的 CR5 控制器地址。
 
 常用端口：
 
