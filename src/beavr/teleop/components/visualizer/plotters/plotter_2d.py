@@ -4,6 +4,24 @@ import warnings
 
 import cv2
 import matplotlib
+
+
+def _configure_matplotlib_backend():
+    if os.environ.get("MPLBACKEND"):
+        return
+
+    has_display = os.environ.get("DISPLAY") or os.environ.get("WAYLAND_DISPLAY")
+    if has_display:
+        try:
+            matplotlib.use("TkAgg")
+            return
+        except ImportError:
+            pass
+
+    matplotlib.use("Agg")
+
+
+_configure_matplotlib_backend()
 import matplotlib.pyplot as plt
 
 from beavr.teleop.common.io.files import check_file, get_npz_data, make_dir
@@ -17,7 +35,6 @@ logger = logging.getLogger(__name__)
 
 # Specifically suppress the FigureCanvasAgg warning
 warnings.filterwarnings("ignore", category=UserWarning, message="FigureCanvasAgg is non-interactive")
-matplotlib.use("TkAgg")  # Set the backend to TkAgg before importing pyplot
 
 
 def plot_line(x1, x2, y1, y2):
