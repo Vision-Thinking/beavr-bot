@@ -20,5 +20,6 @@ export DOBOT_WORKSPACE_RADIUS_MM="${DOBOT_WORKSPACE_RADIUS_MM:-100.0}"
 export DOBOT_DEADBAND_MM="${DOBOT_DEADBAND_MM:-0.5}"
 
 "${PYTHON}" teleop.py \
+  --teleop.network.host_address="${BEAVR_HOST_ADDRESS}" \
   --robot_name=dobot_cr5 \
   --laterality=right
