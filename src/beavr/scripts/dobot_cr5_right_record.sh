@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
+cd "${REPO_ROOT}"
+export PYTHONPATH="${REPO_ROOT}/src${PYTHONPATH:+:${PYTHONPATH}}"
+PYTHON="${PYTHON:-python}"
+
 export DOBOT_ROBOT_HOST="${DOBOT_ROBOT_HOST:-192.168.5.2}"
 export DOBOT_ROBOT_PORT="${DOBOT_ROBOT_PORT:-29999}"
 export DOBOT_DRY_RUN="${DOBOT_DRY_RUN:-1}"
@@ -21,7 +27,7 @@ RESET_TIME_S="${RESET_TIME_S:-5}"
 PUSH_TO_HUB="${PUSH_TO_HUB:-false}"
 VIDEO="${VIDEO:-false}"
 
-python src/beavr/scripts/control_robot.py \
+"${PYTHON}" src/beavr/scripts/control_robot.py \
   --robot.type=dobot_cr5_only_adapter \
   --teleop.robot_name=dobot_cr5 \
   --teleop.operate=true \

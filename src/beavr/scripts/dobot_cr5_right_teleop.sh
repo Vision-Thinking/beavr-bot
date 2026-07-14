@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
+cd "${REPO_ROOT}"
+export PYTHONPATH="${REPO_ROOT}/src${PYTHONPATH:+:${PYTHONPATH}}"
+PYTHON="${PYTHON:-python}"
+
 # Defaults match the right-arm jump host from ~/.ssh/config:
 # dobot-cr5a-right-computer -> CR5 controller at 192.168.5.2.
 export DOBOT_ROBOT_HOST="${DOBOT_ROBOT_HOST:-192.168.5.2}"
@@ -12,6 +18,6 @@ export DOBOT_MAX_STEP_MM="${DOBOT_MAX_STEP_MM:-5.0}"
 export DOBOT_WORKSPACE_RADIUS_MM="${DOBOT_WORKSPACE_RADIUS_MM:-100.0}"
 export DOBOT_DEADBAND_MM="${DOBOT_DEADBAND_MM:-0.5}"
 
-python teleop.py \
+"${PYTHON}" teleop.py \
   --robot_name=dobot_cr5 \
   --laterality=right
