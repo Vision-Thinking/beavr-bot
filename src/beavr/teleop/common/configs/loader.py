@@ -13,6 +13,7 @@ multi-robot setups via CLI, enabling flexible system composition.
 import importlib
 import logging
 import os
+import sys
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, List
@@ -24,6 +25,11 @@ from beavr.teleop.configs.robots import TeleopRobotConfig
 
 logger = logging.getLogger(__name__)
 _CONFIGS_PKG = "beavr.teleop.configs.robots"
+
+
+def _cli_flag_present(dotted_key: str) -> bool:
+    flag = f"--{dotted_key}"
+    return any(arg == flag or arg.startswith(f"{flag}=") for arg in sys.argv[1:])
 
 
 class Laterality(Enum):
@@ -341,9 +347,12 @@ def apply_section_override(target: Any, yaml_obj: dict, defaults: Any, section_n
         try:
             current = getattr(target, key)
             default = getattr(defaults, key)
+            cli_key = f"{section_name}.{key}"
 
             # If current value equals default, it wasn't overridden by CLI
-            if current == default:
+            if _cli_flag_present(cli_key):
+                logger.debug(f"🚫 Skipped YAML override (CLI precedence): {section_name}.{key}")
+            elif current == default:
                 setattr(target, key, yaml_value)
                 logger.debug(f"📝 Applied YAML override: {section_name}.{key} = {yaml_value}")
             else:
